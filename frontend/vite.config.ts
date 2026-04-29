@@ -2,7 +2,10 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const base = process.env.VITE_BASE_PATH || './'
+
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -18,13 +21,13 @@ export default defineConfig({
         orientation: 'portrait-primary',
         icons: [
           {
-            src: '/icon.svg',
+            src: 'icon.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any'
           },
           {
-            src: '/maskable.svg',
+            src: 'maskable.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'maskable'

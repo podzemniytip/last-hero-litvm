@@ -1,0 +1,68 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || './' }}
+      VITE_CONTRACT_ADDRESS: ${{ vars.VITE_CONTRACT_ADDRESS || '0x5C8c991E75c44E008b6D5798650187BB87Ef8F45' }}
+      VITE_LITVM_RPC_URL: ${{ vars.VITE_LITVM_RPC_URL || 'https://liteforge.rpc.caldera.xyz/http' }}
+      VITE_LITVM_EXPLORER_URL: ${{ vars.VITE_LITVM_EXPLORER_URL || 'https://liteforge.explorer.caldera.xyz' }}
+      VITE_CONTRACT_DEPLOY_BLOCK: ${{ vars.VITE_CONTRACT_DEPLOY_BLOCK || '3325516' }}
+      VITE_WALLETCONNECT_PROJECT_ID: ${{ vars.VITE_WALLETCONNECT_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

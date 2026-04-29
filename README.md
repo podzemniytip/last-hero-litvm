@@ -104,6 +104,46 @@ npm run build
 
 Deploy `frontend/dist` to Netlify, Vercel, Cloudflare Pages, or any static host.
 
+### GitHub Pages
+
+This repository includes `.github/workflows/deploy-pages.yml`. After pushing to
+`main`, enable GitHub Pages:
+
+1. Open repository settings on GitHub.
+2. Go to `Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Run the `Deploy GitHub Pages` workflow or push to `main`.
+
+The workflow builds `frontend/dist` and deploys it to GitHub Pages. It uses the
+current LitVM deployment by default:
+
+```env
+VITE_CONTRACT_ADDRESS=0x5C8c991E75c44E008b6D5798650187BB87Ef8F45
+VITE_LITVM_RPC_URL=https://liteforge.rpc.caldera.xyz/http
+VITE_LITVM_EXPLORER_URL=https://liteforge.explorer.caldera.xyz
+VITE_CONTRACT_DEPLOY_BLOCK=3325516
+```
+
+For WalletConnect QR support, add a repository variable:
+
+```text
+VITE_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
+```
+
+The Vite build uses a relative base path by default, so it works both on the
+temporary GitHub Pages URL and on a future custom domain.
+
+When you buy a custom domain, add it in GitHub `Settings -> Pages -> Custom
+domain`, then configure DNS at your registrar:
+
+```text
+A     @    185.199.108.153
+A     @    185.199.109.153
+A     @    185.199.110.153
+A     @    185.199.111.153
+CNAME www  podzemniytip.github.io
+```
+
 For Netlify:
 
 - Build command: `npm run build`
