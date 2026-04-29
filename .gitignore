@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Vite / frontend
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+frontend/.env
+frontend/.env.local
+frontend/vite-*.log
+frontend/*.log
+frontend/*screenshot.png
+frontend/.chrome-profile*/
+frontend/tsconfig*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+frontend/tailwind.config.js
+frontend/tailwind.config.d.ts
+
+# Foundry
+contracts/cache/
+contracts/out/
+contracts/broadcast/
+contracts/.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Last Hero">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="42%" r="64%">
+      <stop offset="0" stop-color="#00ffcc"/>
+      <stop offset="0.28" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#000"/>
+  <rect x="28" y="28" width="456" height="456" rx="74" fill="url(#g)" stroke="#00ffcc" stroke-width="6"/>
+  <path d="M256 92 364 190 327 392H185L148 190Z" fill="#050505" stroke="#00ffcc" stroke-width="12" filter="url(#glow)"/>
+  <path d="M191 214h130M205 276h102M224 338h64" stroke="#ff003c" stroke-width="16" stroke-linecap="round"/>
+  <path d="M178 124 111 156M334 124l67 32M256 74v-44" stroke="#8a2be2" stroke-width="14" stroke-linecap="round"/>
+</svg>
