@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Activity, Volume2, VolumeX, Wallet } from 'lucide-react'
+import { Activity, Twitter, Volume2, VolumeX, Wallet } from 'lucide-react'
 import type { Address } from 'viem'
 import { formatAddress, formatZkLtc } from '../lib/format'
 import { Blockie } from './Blockie'
@@ -30,6 +30,17 @@ export function Header({
       </div>
 
       <div className="flex items-center gap-2">
+        <a
+          className="social-link"
+          href="https://x.com/ChainZenit"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open ChainZenit on X"
+          title="ChainZenit on X"
+        >
+          <Twitter size={17} />
+          <span className="hidden md:inline">@ChainZenit</span>
+        </a>
         <button
           className="icon-button hidden sm:inline-flex"
           onClick={onToggleAudio}

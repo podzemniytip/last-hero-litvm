@@ -123,6 +123,10 @@ button {
     @apply inline-flex h-10 w-10 items-center justify-center rounded border border-white/15 bg-white/[0.045] text-platinum/70 transition duration-200 hover:border-cyan/45 hover:bg-cyan/[0.08] hover:text-cyan disabled:pointer-events-none disabled:text-platinum/30;
   }
 
+  .social-link {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded border border-cyan/30 bg-cyan/[0.055] px-3 font-mono text-xs font-bold uppercase text-cyan/90 shadow-[0_0_20px_rgba(0,255,204,.12)] transition duration-200 hover:scale-[1.02] hover:border-cyan/70 hover:bg-cyan/[0.12] hover:text-cyan hover:shadow-[0_0_32px_rgba(0,255,204,.28)];
+  }
+
   .wallet-pill {
     @apply inline-flex min-h-11 items-center gap-2 rounded border border-cyan/35 bg-black/50 px-2.5 py-1.5 shadow-neon transition hover:border-cyan/70 hover:bg-cyan/[0.08];
   }
